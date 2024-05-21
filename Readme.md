@@ -718,7 +718,7 @@ kubectl annotate deployment/hello-deployment kubernetes.io/change-cause="version
 
 Provoca un cambio de imagen, imperativo: 
 
-``
+```
 kubectl set image deployments/hello-deployment go-hello=jluisalvarez/go_hello:2024
 ```
 
