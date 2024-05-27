@@ -543,7 +543,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
         http.HandleFunc("/", handler)
-        log.Println("Go Hello is listening on port 8888")
+        log.Println("Go Hello is listening on port 8080")
         log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
@@ -565,7 +565,7 @@ Dockerfile
 FROM golang:1.22.3-alpine AS build
 WORKDIR /src/
 RUN go mod init example/hello
-COPY app/main.go /src/
+COPY app/hello.go /src/
 RUN go mod tidy
 RUN CGO_ENABLED=0 go build -o /bin/hello
 
@@ -585,6 +585,14 @@ Comprobar funcionamiento de la imagen:
 
 ```shell 
 docker run -d -p 8080:8080 --name hello_go jluisalvarez/go_hello:2023   
+```
+
+Subir la imagen a Docker Hub:
+
+```shell
+
+docker push jluisalvarez/go_hello:2023
+
 ```
 
 ## Crear Deployment en Kubernetes
